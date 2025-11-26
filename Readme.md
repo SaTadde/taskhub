@@ -83,8 +83,6 @@ cd ../server && npm install
 
 ### Create .env inside server:
 
-ini
-Copy code
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 JWT_EXPIRES_IN=7d
