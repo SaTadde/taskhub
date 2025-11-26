@@ -5,18 +5,26 @@ const router = express.Router();
 
 // CREATE TASK
 router.post("/", auth, async (req, res) => {
-  const task = await Task.create({
-    userId: req.userId,   // CORRECT FIELD
-    title: req.body.title,
-    completed: false
-  });
-  res.json(task);
+  try {
+    const task = await Task.create({
+      userId: req.userId,
+      title: req.body.title,
+      completed: false
+    });
+    res.json(task);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
 // GET ONLY LOGGED USER TASKS
 router.get("/", auth, async (req, res) => {
-  const tasks = await Task.find({ userId: req.userId });
-  res.json(tasks);
+  try {
+    const tasks = await Task.find({ userId: req.userId });
+    res.json(tasks);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 });
 
 // UPDATE TASK
