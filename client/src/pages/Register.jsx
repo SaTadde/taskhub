@@ -13,7 +13,7 @@ export default function Register() {
   const registerUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/auth/register", form);
+      await axios.post("https://taskhub-api-ody7.onrender.com/api/auth/register", form);
       toast.success("Account created! Please login.");
       navigate("/login");
     } catch (err) {

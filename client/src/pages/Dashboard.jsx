@@ -17,7 +17,7 @@ export default function Dashboard() {
   const pending = total - completed;
 
   const fetchTasks = async () => {
-    const res = await axios.get("http://localhost:5000/api/tasks", {
+    const res = await axios.get("https://taskhub-api-ody7.onrender.com/api/tasks", {
       headers: { Authorization: `Bearer ${token}` },
     });
     setTasks(res.data);
@@ -26,7 +26,7 @@ export default function Dashboard() {
   const addTask = async () => {
     if (!title.trim()) return;
     await axios.post(
-      "http://localhost:5000/api/tasks",
+      "https://taskhub-api-ody7.onrender.com/api/tasks",
       { title },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -37,7 +37,7 @@ export default function Dashboard() {
 
   const toggleStatus = async (id, completed) => {
     await axios.put(
-      `http://localhost:5000/api/tasks/${id}`,
+      `https://taskhub-api-ody7.onrender.com/api/tasks/${id}`,
       { completed: !completed },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -47,7 +47,7 @@ export default function Dashboard() {
 
   const deleteTask = async (id) => {
     if (window.confirm("Delete this task?")) {
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`, {
+      await axios.delete(`https://taskhub-api-ody7.onrender.com/api/tasks/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       toast.error("Task deleted!");

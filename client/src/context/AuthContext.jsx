@@ -21,7 +21,7 @@ export default function AuthProvider({ children }) {
 
   const fetchProfile = async (jwtToken = token) => {
     try {
-      const res = await axios.get("http://localhost:5000/api/auth/profile", {
+      const res = await axios.get("https://taskhub-api-ody7.onrender.com/api/auth/profile", {
         headers: { Authorization: `Bearer ${jwtToken}` },
       });
       setUser(res.data);

@@ -4,50 +4,35 @@ const auth = require("../middleware/auth");
 const router = express.Router();
 
 // CREATE TASK
-router.post("/", async (req, res) => {
-  try {
-    const task = await Task.create({
-      title: req.body.title,
-      completed: false,
-    });
-    res.json(task);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+router.post("/", auth, async (req, res) => {
+  const task = await Task.create({
+    userId: req.userId,   // CORRECT FIELD
+    title: req.body.title,
+    completed: false
+  });
+  res.json(task);
 });
 
-// GET ALL TASKS
-router.get("/", async (req, res) => {
-  try {
-    const tasks = await Task.find();
-    res.json(tasks);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+// GET ONLY LOGGED USER TASKS
+router.get("/", auth, async (req, res) => {
+  const tasks = await Task.find({ userId: req.userId });
+  res.json(tasks);
 });
 
 // UPDATE TASK
-router.put("/:id", async (req, res) => {
-  try {
-    const updated = await Task.findByIdAndUpdate(
-      req.params.id,
-      { completed: req.body.completed },
-      { new: true }
-    );
-    res.json(updated);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+router.put("/:id", auth, async (req, res) => {
+  const updated = await Task.findOneAndUpdate(
+    { _id: req.params.id, userId: req.userId },
+    { completed: req.body.completed },
+    { new: true }
+  );
+  res.json(updated);
 });
 
 // DELETE TASK
-router.delete("/:id", async (req, res) => {
-  try {
-    await Task.findByIdAndDelete(req.params.id);
-    res.json({ message: "Task deleted" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+router.delete("/:id", auth, async (req, res) => {
+  await Task.findOneAndDelete({ _id: req.params.id, userId: req.userId });
+  res.json({ message: "Task deleted" });
 });
 
 module.exports = router;
