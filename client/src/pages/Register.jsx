@@ -29,11 +29,11 @@ export default function Register() {
         <form onSubmit={registerUser}>
           <input name="name" placeholder="Full Name" className="form-control mb-3" onChange={handleChange} />
 
-          <input name="email" type="email" placeholder="Email" className="form-control mb-3" onChange={handleChange} />
+          <input name="email" type="email" required placeholder="Email" className="form-control mb-3" onChange={handleChange} />
 
           <input
             name="password"
-            type="password"
+            type="password" required
             placeholder="Password"
             className="form-control mb-4"
             onChange={handleChange}

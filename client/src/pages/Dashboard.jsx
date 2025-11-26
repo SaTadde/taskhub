@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 
 export default function Dashboard() {
-  const { token } = useContext(AuthContext);
+  const { token, user } = useContext(AuthContext);
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
   const [search, setSearch] = useState("");
@@ -67,7 +67,7 @@ export default function Dashboard() {
         border:"1px solid #E2E8F0",
         boxShadow:"0 4px 12px rgba(0,0,0,0.05)"
       }}>
-        <h5 className="fw-bold mb-1">Welcome Back</h5>
+        <h5 className="fw-bold mb-1">Welcome Back {user?.name ? `, ${user.name}` : ""}</h5>
         <p className="m-0 text-secondary">Let's stay productive today.</p>
       </div>
 

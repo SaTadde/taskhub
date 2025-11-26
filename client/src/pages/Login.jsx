@@ -29,7 +29,7 @@ export default function Login() {
 
         <form onSubmit={handleSubmit}>
           <input
-            type="email"
+            type="email" required
             className="form-control mb-3"
             placeholder="Email"
             value={email}
@@ -37,7 +37,7 @@ export default function Login() {
           />
 
           <input
-            type="password"
+            type="password" required
             className="form-control mb-4"
             placeholder="Password"
             value={password}
