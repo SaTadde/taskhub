@@ -3,7 +3,7 @@
 A modern, secure and scalable task management application built using **React**, **Node.js**, **Express**, and **MongoDB**.  
 It allows users to register, login, manage tasks, track progress, and visualize productivity — all with a clean UI and smooth UX.
 
-🔗 Frontend: [taskhub-blond.vercel.app](https://taskhub-blond.vercel.app/)
+🔗 Frontend: [https://taskhub-blond.vercel.app](https://taskhub-blond.vercel.app/)
 🔗 Backend API: [https://taskhub-api-xxxx.onrender.com](https://taskhub-api-ody7.onrender.com)
 🔗 GitHub Repo: https://github.com/SaTadde/taskhub
 
